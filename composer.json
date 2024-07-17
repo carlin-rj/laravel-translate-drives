@@ -1,5 +1,6 @@
 {
     "name": "carlin/laravel-translate-drivers",
+    "license": "Apache-2.0",
     "description": "Baidu, Alibaba Cloud Translate, and Google Translate driver package, ready to use out of the box",
     "keywords": [
         "laravel",

@@ -23,6 +23,9 @@ use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
 $res = TranslateManager::driver(Provider::BAIDU)->translate($query, LangCode::EN);
+$res->getDst(); //translate text
+$res->getSrc(); //origin text
+$res->getOriginal(); //original result
 ```
 
 

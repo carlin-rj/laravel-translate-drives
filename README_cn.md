@@ -39,6 +39,9 @@ use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
 $res = TranslateManager::driver(Provider::ALIBABA_CLOUD)->translate($query, LangCode::EN);
+$res->getDst(); //翻译后的值
+$res->getSrc(); //翻译前的值
+$res->getOriginal(); //原始值
 ```
 
 ## 自定义驱动

@@ -28,11 +28,6 @@ $res = TranslateManager::driver(Provider::BAIDU)->translate($query, LangCode::EN
 ```php
 use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
 
-$config = [
-    'drivers' => [
-        Provider::GOOGLE => [],
-    ],
-];
 $query = '我喜欢你的冷态度 :test';
 $res = TranslateManager::driver(Provider::GOOGLE)->translate($query, LangCode::EN);
 ```

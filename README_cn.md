@@ -4,15 +4,15 @@
 #### 环境要求
 - `PHP` >= 8.0
 
-#### install
+## 安装
 ```
 composer require carlin/laravel-translate-drivers
 ```
-#### publish config
+## 发布配置文件
 ```php
 php artisan vendor:publish --provider="Carlin\LaravelTranslateDrivers\TranslateDriversServiceProvider"
 ```
-
+## 使用示例
 ### 百度
 
 ```php

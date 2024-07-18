@@ -12,7 +12,7 @@ composer require carlin/laravel-translate-drivers
 ```
 
 ```php
-php artisan vendor:publish --provider="Carlin\LaravelTranslateDrivers\TranslateDriversServiceProvider" --tag=translate-driver
+php artisan vendor:publish --provider="Carlin\LaravelTranslateDrivers\TranslateDriversServiceProvider"
 ```
 
 ## Usage
@@ -26,6 +26,9 @@ $res = TranslateManager::baidu()->translate($query, LangCode::EN);
 $res->getDst(); //translate text
 $res->getSrc(); //origin text
 $res->getOriginal(); //original result
+
+//Custom configuration
+$res = TranslateManager::baidu(['app_id'=>'', 'app_key'=>''])->translate($query, LangCode::EN);
 ```
 
 
@@ -45,6 +48,9 @@ use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
 $res = TranslateManager::alibabaCloud()->translate($query, LangCode::EN);
+
+//Custom configuration
+$res = TranslateManager::alibabaCloud(['app_id'=>'', 'app_key'=>''])->translate($query, LangCode::EN);
 ```
 
 ## Custom driver

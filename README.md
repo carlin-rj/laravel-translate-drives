@@ -61,7 +61,7 @@ class MyTranslateDriver extends AbstractProvider
         //you code
     }
 
-    protected function handlerTranslate(string $query, string $from = LangCode::Auto, string $to = LangCode::EN): Translate
+    protected function handlerTranslate(string $query, string $to = LangCode::EN, string $from = LangCode::AUTO): Translate
     {
         //you translation code
         return new Translate([

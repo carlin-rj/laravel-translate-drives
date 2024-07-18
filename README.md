@@ -22,7 +22,7 @@ php artisan vendor:publish --provider="Carlin\LaravelTranslateDrivers\TranslateD
 use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
-$res = TranslateManager::driver(Provider::BAIDU)->translate($query, LangCode::EN);
+$res = TranslateManager::baidu()->translate($query, LangCode::EN);
 $res->getDst(); //translate text
 $res->getSrc(); //origin text
 $res->getOriginal(); //original result
@@ -35,7 +35,7 @@ $res->getOriginal(); //original result
 use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
-$res = TranslateManager::driver(Provider::GOOGLE)->translate($query, LangCode::EN);
+$res = TranslateManager::google()->translate($query, LangCode::EN);
 ```
 
 ### Alibaba cloud
@@ -44,7 +44,7 @@ $res = TranslateManager::driver(Provider::GOOGLE)->translate($query, LangCode::E
 use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
-$res = TranslateManager::driver(Provider::ALIBABA_CLOUD)->translate($query, LangCode::EN);
+$res = TranslateManager::alibabaCloud()->translate($query, LangCode::EN);
 ```
 
 ## Custom driver
@@ -97,7 +97,7 @@ use Carlin\TranslateDrivers\Supports\Provider;
 use Carlin\TranslateDrivers\Supports\LangCode;
 
 $query = '我喜欢你的冷态度 :test';
-$res = TranslateManager::driver(Provider::GOOGLE)->preserveParameters()->translate($query, LangCode::EN); //I like your cold attitude :test
+$res = TranslateManager::google()->preserveParameters()->translate($query, LangCode::EN); //I like your cold attitude :test
 ```
 
 Or use custom regex:
@@ -108,7 +108,7 @@ use Carlin\TranslateDrivers\Supports\Provider;
 use Carlin\TranslateDrivers\Supports\LangCode;
 
 $query = '我喜欢你的冷态度 {{test}}';
-$res = TranslateManager::driver(Provider::GOOGLE)->preserveParameters('/\{\{([^}]+)\}\}/')->translate($query, LangCode::EN); //I like your cold attitude :test
+$res = TranslateManager::google()->preserveParameters('/\{\{([^}]+)\}\}/')->translate($query, LangCode::EN); //I like your cold attitude :test
 ```
 
 ## If you have a better translation driver, please feel free to submit a PR

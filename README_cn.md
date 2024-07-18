@@ -8,7 +8,7 @@
 ```
 composer require carlin/laravel-translate-drivers
 ```
-
+#### publish config
 ```php
 php artisan vendor:publish --provider="Carlin\LaravelTranslateDrivers\TranslateDriversServiceProvider"
 ```

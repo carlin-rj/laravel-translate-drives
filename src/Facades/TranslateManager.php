@@ -3,6 +3,9 @@
 namespace Carlin\LaravelTranslateDrives\Facades;
 
 use Carlin\TranslateDrives\Providers\AbstractProvider;
+use Carlin\TranslateDrives\Providers\AlibabaCloudProvider;
+use Carlin\TranslateDrives\Providers\BaiduProvider;
+use Carlin\TranslateDrives\Providers\GoogleProvider;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -11,6 +14,9 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Carlin\TranslateDrives\TranslateManager config(array $config)
  * @method static array getDrives()
  * @method static AbstractProvider buildProvider(string $provider, array $config = [])
+ * @method static BaiduProvider baidu(?array $config = null)
+ * @method static GoogleProvider google(?array $config = null)
+ * @method static AlibabaCloudProvider alibabaCloud(?array $config = null)
  *
  * @see \Carlin\TranslateDrives\TranslateManager
  */

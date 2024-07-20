@@ -6,17 +6,17 @@
 
 #### install
 ```
-composer require carlin/laravel-translate-drivers
+composer require carlin/laravel-translate-drives
 ```
 
 ```php
-php artisan vendor:publish --provider="Carlin\LaravelTranslateDrivers\TranslateDriversServiceProvider" --tag=translate-driver
+php artisan vendor:publish --provider="Carlin\LaravelTranslateDrives\TranslateDrivesServiceProvider" --tag=translate-driver
 ```
 
 ### 百度
 
 ```php
-use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
+use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
 $res = TranslateManager::driver(Provider::BAIDU)->translate($query, LangCode::EN);
@@ -26,7 +26,7 @@ $res = TranslateManager::driver(Provider::BAIDU)->translate($query, LangCode::EN
 ### Google
 
 ```php
-use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
+use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
 $res = TranslateManager::driver(Provider::GOOGLE)->translate($query, LangCode::EN);
@@ -35,7 +35,7 @@ $res = TranslateManager::driver(Provider::GOOGLE)->translate($query, LangCode::E
 ### 阿里云翻译
 
 ```php
-use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
+use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
 $res = TranslateManager::driver(Provider::ALIBABA_CLOUD)->translate($query, LangCode::EN);
@@ -46,8 +46,8 @@ $res->getOriginal(); //原始值
 
 ## 自定义驱动
 ```php
-use Carlin\TranslateDrivers\Providers\AbstractProvider;
-use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
+use Carlin\TranslateDrives\Providers\AbstractProvider;
+use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
 class MyTranslateDriver extends AbstractProvider
 {
     public function __construct(?string $app_id = null, ?string $app_key = null, array $config = [])
@@ -76,7 +76,7 @@ class MyTranslateDriver extends AbstractProvider
 
 $query = '我喜欢你的冷态度 :test';
 $res = TranslateManager::extend('my_driver', function ($allConfig) {
-    $config = $allConfig['drivers']['my_driver'] ?? [];
+    $config = $allConfig['drives']['my_driver'] ?? [];
     //you configuration code
     return new MyTranslateDriver(config:$config);
 })->driver('my_driver')->translate($query);
@@ -88,9 +88,9 @@ $res = TranslateManager::extend('my_driver', function ($allConfig) {
 
 默认正则表达式是 ```/:(\w+)/``` ，它涵盖以 : 开头的参数。对于翻译 Laravel 和其他框架的语言文件很有用。您还可以传递自定义正则表达式来修改参数语法。
 ```php
-use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
-use Carlin\TranslateDrivers\Supports\Provider;
-use Carlin\TranslateDrivers\Supports\LangCode;
+use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
+use Carlin\TranslateDrives\Supports\Provider;
+use Carlin\TranslateDrives\Supports\LangCode;
 
 $query = '我喜欢你的冷态度 :test';
 $res = TranslateManager::driver(Provider::GOOGLE)->preserveParameters()->translate($query, LangCode::EN); //I like your cold attitude :test
@@ -99,9 +99,9 @@ $res = TranslateManager::driver(Provider::GOOGLE)->preserveParameters()->transla
 或者使用自定义正则表达式:
 
 ```php
-use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
-use Carlin\TranslateDrivers\Supports\Provider;
-use Carlin\TranslateDrivers\Supports\LangCode;
+use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
+use Carlin\TranslateDrives\Supports\Provider;
+use Carlin\TranslateDrives\Supports\LangCode;
 
 $query = '我喜欢你的冷态度 {{test}}';
 $res = TranslateManager::driver(Provider::GOOGLE)->preserveParameters('/\{\{([^}]+)\}\}/')->translate($query, LangCode::EN); //I like your cold attitude :test

@@ -1,5 +1,5 @@
 {
-    "name": "carlin/laravel-translate-drivers",
+    "name": "carlin/laravel-translate-drives",
     "license": "Apache-2.0",
     "description": "Baidu, Alibaba Cloud Translate, and Google Translate driver package, ready to use out of the box",
     "keywords": [
@@ -11,11 +11,11 @@
         "alibaba cloud",
         "google translate",
         "free google translate",
-        "translate drivers"
+        "translate drives"
     ],
     "autoload": {
         "psr-4": {
-            "Carlin\\LaravelTranslateDrivers\\": "src/"
+            "Carlin\\LaravelTranslateDrives\\": "src/"
         }
     },
     "authors": [
@@ -25,13 +25,13 @@
         }
     ],
     "require": {
-        "carlin/translate-drivers": "^1.0",
+        "carlin/translate-drives": "^1.0",
         "laravel/framework": ">=8"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Carlin\\LaravelTranslateDrivers\\TranslateDriversServiceProvider"
+                "Carlin\\LaravelTranslateDrives\\TranslateDrivesServiceProvider"
             ]
         }
     }

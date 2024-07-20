@@ -1,10 +1,10 @@
 <?php
 
-use Carlin\TranslateDrivers\Supports\Provider;
+use Carlin\TranslateDrives\Supports\Provider;
 
 return [
 	// 驱动
-	'drivers' => [
+	'drives' => [
 		// 免费版
 		Provider::GOOGLE => [
 

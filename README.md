@@ -8,18 +8,18 @@
 
 ## install
 ```
-composer require carlin/laravel-translate-drivers
+composer require carlin/laravel-translate-drives
 ```
 
 ```php
-php artisan vendor:publish --provider="Carlin\LaravelTranslateDrivers\TranslateDriversServiceProvider" --tag=translate-driver
+php artisan vendor:publish --provider="Carlin\LaravelTranslateDrives\TranslateDrivesServiceProvider" --tag=translate-driver
 ```
 
 ## Usage
 ### Baidu
 
 ```php
-use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
+use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
 $res = TranslateManager::driver(Provider::BAIDU)->translate($query, LangCode::EN);
@@ -32,7 +32,7 @@ $res->getOriginal(); //original result
 ### Google
 
 ```php
-use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
+use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
 $res = TranslateManager::driver(Provider::GOOGLE)->translate($query, LangCode::EN);
@@ -41,7 +41,7 @@ $res = TranslateManager::driver(Provider::GOOGLE)->translate($query, LangCode::E
 ### Alibaba cloud
 
 ```php
-use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
+use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
 $res = TranslateManager::driver(Provider::ALIBABA_CLOUD)->translate($query, LangCode::EN);
@@ -50,8 +50,8 @@ $res = TranslateManager::driver(Provider::ALIBABA_CLOUD)->translate($query, Lang
 ## Custom driver
 ```php
 
-use Carlin\TranslateDrivers\Providers\AbstractProvider;
-use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
+use Carlin\TranslateDrives\Providers\AbstractProvider;
+use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
 class MyTranslateDriver extends AbstractProvider
 {
     public function __construct(?string $app_id = null, ?string $app_key = null, array $config = [])
@@ -80,7 +80,7 @@ class MyTranslateDriver extends AbstractProvider
 
 $query = '我喜欢你的冷态度 :test';
 $res = TranslateManager::extend('my_driver', function ($allConfig) {
-    $config = $allConfig['drivers']['my_driver'] ?? [];
+    $config = $allConfig['drives']['my_driver'] ?? [];
     //you configuration code
     return new MyTranslateDriver(config:$config);
 })->driver('my_driver')->translate($query);
@@ -92,9 +92,9 @@ The ```preserveParameters()``` method allows you to preserve certain parameters 
 
 Default regex is ```/:(\w+)/``` which covers parameters starting with :. Useful for translating language files of Laravel and other frameworks. You can also pass your custom regex to modify the parameter syntax.
 ```php
-use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
-use Carlin\TranslateDrivers\Supports\Provider;
-use Carlin\TranslateDrivers\Supports\LangCode;
+use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
+use Carlin\TranslateDrives\Supports\Provider;
+use Carlin\TranslateDrives\Supports\LangCode;
 
 $query = '我喜欢你的冷态度 :test';
 $res = TranslateManager::driver(Provider::GOOGLE)->preserveParameters()->translate($query, LangCode::EN); //I like your cold attitude :test
@@ -103,9 +103,9 @@ $res = TranslateManager::driver(Provider::GOOGLE)->preserveParameters()->transla
 Or use custom regex:
 
 ```php
-use Carlin\LaravelTranslateDrivers\Facades\TranslateManager;
-use Carlin\TranslateDrivers\Supports\Provider;
-use Carlin\TranslateDrivers\Supports\LangCode;
+use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
+use Carlin\TranslateDrives\Supports\Provider;
+use Carlin\TranslateDrives\Supports\LangCode;
 
 $query = '我喜欢你的冷态度 {{test}}';
 $res = TranslateManager::driver(Provider::GOOGLE)->preserveParameters('/\{\{([^}]+)\}\}/')->translate($query, LangCode::EN); //I like your cold attitude :test

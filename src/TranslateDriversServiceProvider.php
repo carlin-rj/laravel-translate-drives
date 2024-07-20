@@ -1,12 +1,12 @@
 <?php
 
-namespace Carlin\LaravelTranslateDrivers;
+namespace Carlin\LaravelTranslateDrives;
 
-use Carlin\TranslateDrivers\TranslateManager;
+use Carlin\TranslateDrives\TranslateManager;
 use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider;
 
-class TranslateDriversServiceProvider extends ServiceProvider
+class TranslateDrivesServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any package services.
@@ -25,14 +25,14 @@ class TranslateDriversServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-		$configPath = __DIR__.'/../config/translate-drivers.php';
-		$this->mergeConfigFrom($configPath, 'translate-drivers');
+		$configPath = __DIR__.'/../config/translate-drives.php';
+		$this->mergeConfigFrom($configPath, 'translate-drives');
 
 
 		$this->app->bind(TranslateManager::class, function ($app) {
 			/** @var Repository $config */
 			$config = $app->make('config');
-			return new TranslateManager($config->get('translate-drivers') ?? []);
+			return new TranslateManager($config->get('translate-drives') ?? []);
 		});
 	}
 
@@ -40,8 +40,8 @@ class TranslateDriversServiceProvider extends ServiceProvider
 	{
 		if ($this->app->runningInConsole()) {
 			$this->publishes([
-				__DIR__.'/../config/translate-drivers.php' => config_path('translate-drivers.php'),
-			], 'translate-drivers');
+				__DIR__.'/../config/translate-drives.php' => config_path('translate-drives.php'),
+			], 'translate-drives');
 		}
 	}
 

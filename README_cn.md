@@ -4,22 +4,25 @@
 #### 环境要求
 - `PHP` >= 8.0
 
-#### install
+## 安装
 ```
 composer require carlin/laravel-translate-drives
 ```
-
+## 发布配置文件
 ```php
-php artisan vendor:publish --provider="Carlin\LaravelTranslateDrives\TranslateDrivesServiceProvider" --tag=translate-driver
+php artisan vendor:publish --provider="Carlin\LaravelTranslateDrives\TranslateDrivesServiceProvider"
 ```
-
+## 使用示例
 ### 百度
 
 ```php
 use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
-$res = TranslateManager::driver(Provider::BAIDU)->translate($query, LangCode::EN);
+$res = TranslateManager::baidu()->translate($query, LangCode::EN);
+
+//自定义配置参数
+$res = TranslateManager::baidu(['app_id'=>'', 'app_key'=>''])->translate($query, LangCode::EN);
 ```
 
 
@@ -29,7 +32,7 @@ $res = TranslateManager::driver(Provider::BAIDU)->translate($query, LangCode::EN
 use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
-$res = TranslateManager::driver(Provider::GOOGLE)->translate($query, LangCode::EN);
+$res = TranslateManager::google()->translate($query, LangCode::EN);
 ```
 
 ### 阿里云翻译
@@ -38,10 +41,13 @@ $res = TranslateManager::driver(Provider::GOOGLE)->translate($query, LangCode::E
 use Carlin\LaravelTranslateDrives\Facades\TranslateManager;
 
 $query = '我喜欢你的冷态度 :test';
-$res = TranslateManager::driver(Provider::ALIBABA_CLOUD)->translate($query, LangCode::EN);
+$res = TranslateManager::alibabaCloud()->translate($query, LangCode::EN);
 $res->getDst(); //翻译后的值
 $res->getSrc(); //翻译前的值
 $res->getOriginal(); //原始值
+
+//自定义配置参数
+$res = TranslateManager::alibabaCloud()->translate($query, LangCode::EN);
 ```
 
 ## 自定义驱动
@@ -57,7 +63,7 @@ class MyTranslateDriver extends AbstractProvider
         //you code
     }
 
-    protected function handlerTranslate(string $query, string $from = LangCode::Auto, string $to = LangCode::EN): Translate
+    protected function handlerTranslate(string $query, string $to = LangCode::EN, string $from = LangCode::AUTO): Translate
     {
         //you translation code
         return new Translate([
@@ -93,7 +99,7 @@ use Carlin\TranslateDrives\Supports\Provider;
 use Carlin\TranslateDrives\Supports\LangCode;
 
 $query = '我喜欢你的冷态度 :test';
-$res = TranslateManager::driver(Provider::GOOGLE)->preserveParameters()->translate($query, LangCode::EN); //I like your cold attitude :test
+$res = TranslateManager::google()->preserveParameters()->translate($query, LangCode::EN); //I like your cold attitude :test
 ```
 
 或者使用自定义正则表达式:
@@ -104,7 +110,7 @@ use Carlin\TranslateDrives\Supports\Provider;
 use Carlin\TranslateDrives\Supports\LangCode;
 
 $query = '我喜欢你的冷态度 {{test}}';
-$res = TranslateManager::driver(Provider::GOOGLE)->preserveParameters('/\{\{([^}]+)\}\}/')->translate($query, LangCode::EN); //I like your cold attitude :test
+$res = TranslateManager::google()->preserveParameters('/\{\{([^}]+)\}\}/')->translate($query, LangCode::EN); //I like your cold attitude :test
 ```
 
 
